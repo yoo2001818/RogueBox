@@ -2,6 +2,7 @@ package kr.kkiro.roguebox;
 
 import static kr.kkiro.roguebox.util.I18n._;
 import kr.kkiro.roguebox.scene.LoadScene;
+import kr.kkiro.roguebox.util.TermApplication;
 import kr.kkiro.roguebox.util.term.ANSITerminal;
 import kr.kkiro.roguebox.util.term.BufferedTerminal;
 import kr.kkiro.roguebox.util.term.GUITerminal;

@@ -71,7 +71,7 @@ public class FontUtil {
     if(getFontList().size() >= 1) {
       return new Font(getFontList().iterator().next(), Font.PLAIN, 18);
     }
-    JOptionPane.showMessageDialog(null, "한글을 표시할 수 있는 고정폭 글꼴이 없어 영어 고정폭 글꼴을 사용합니다.\n한글이 제대로 보이지 않을 수 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+    //JOptionPane.showMessageDialog(null, "한글을 표시할 수 있는 고정폭 글꼴이 없어 영어 고정폭 글꼴을 사용합니다.\n한글이 제대로 보이지 않을 수 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
     return new Font(nonCJKfontlist.iterator().next(), Font.PLAIN, 18);
   }
   

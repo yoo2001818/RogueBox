@@ -1,7 +1,7 @@
 package kr.kkiro.roguebox.curses;
 
-import kr.kkiro.roguebox.TerminalPosition;
 import kr.kkiro.roguebox.util.term.Terminal;
+import kr.kkiro.roguebox.util.term.TerminalPosition;
 
 public class RootTextGraphics extends TextGraphics {
 

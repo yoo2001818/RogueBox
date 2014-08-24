@@ -1,4 +1,4 @@
-package kr.kkiro.roguebox;
+package kr.kkiro.roguebox.util;
 
 import kr.kkiro.roguebox.curses.RootTextGraphics;
 import kr.kkiro.roguebox.curses.TextGraphics;

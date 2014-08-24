@@ -2,11 +2,11 @@ package kr.kkiro.roguebox.scene;
 
 import java.awt.event.KeyEvent;
 
-import kr.kkiro.roguebox.TermApplication;
 import kr.kkiro.roguebox.curses.CComponent;
 import kr.kkiro.roguebox.curses.CContainer;
 import kr.kkiro.roguebox.curses.CInteractable;
 import kr.kkiro.roguebox.curses.IActionListener;
+import kr.kkiro.roguebox.util.TermApplication;
 
 public abstract class Scene implements IActionListener {
 
