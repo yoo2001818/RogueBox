@@ -45,25 +45,30 @@ public class Character extends InteractableEntity {
   
   public void revealMap(int range) {
     TileEntry entry = getEntityMap().getMap().getTileMap().get(x, y);
-    revealMap(entry, 8, 0, 0);
+    revealMap(entry, 60, 0, 0);
   }
   
   public void revealMap(TileEntry entry, int ttl, int px, int py) {
-    if(ttl < 0) return;
+    if(ttl < 0) {
+      return;
+    }
     if(entry.getTileId() == 0) return;
-    int loss = 8;
+    int loss = 6;
+    //if(px == 0 || py == 0) loss = 10;
     //if(entry.getTileId() == 3) loss = 3;
-    if(entry.revealed) loss = 1;
-    if(entry.revealed && entry.getTileId() == 3) loss = 2;
+    //if(entry.revealed) loss = 6;
+    if(entry.getTileId() == 3) loss = 10;
+    if(entry.getTileId() != 3 && entry.getRelative(px, py).getTileId() == 3) loss = 36;
     entry.revealed = true;
+    entry.setTileData(ttl/6);
     if(px != -1) revealMap(entry.getRelative(-1, 0), ttl - loss, 1, py);
     if(px != 1) revealMap(entry.getRelative(1, 0), ttl - loss, -1, py);
     if(py != -1) revealMap(entry.getRelative(0, -1), ttl - loss, px, 1);
     if(py != 1) revealMap(entry.getRelative(0, 1), ttl - loss, px, -1);
-    if(px != -1 && py != -1) revealMap(entry.getRelative(-1, -1), ttl - loss, 1, 1);
+    /*if(px != -1 && py != -1) revealMap(entry.getRelative(-1, -1), ttl - loss, 1, 1);
     if(px != -1 && py != 1) revealMap(entry.getRelative(-1, 1), ttl - loss, 1, -1);
     if(px != 1 && py != -1) revealMap(entry.getRelative(1, -1), ttl - loss, -1, 1);
-    if(px != 1 && py != 1) revealMap(entry.getRelative(1, 1), ttl - loss, -1, -1);
+    if(px != 1 && py != 1) revealMap(entry.getRelative(1, 1), ttl - loss, -1, -1);*/
   }
 
 }
