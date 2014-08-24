@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'net.java.jinput:jinput:2.0.5' 
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+archivesBaseName = 'RogueBox'
+sourceCompatibility = 1.7
+version = '0.0.1'
+mainClassName = 'kr.kkiro.roguebox.RogueBox'
+
