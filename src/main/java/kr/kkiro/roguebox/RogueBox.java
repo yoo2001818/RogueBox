@@ -1,7 +1,7 @@
 package kr.kkiro.roguebox;
 
 import static kr.kkiro.roguebox.util.I18n._;
-import kr.kkiro.roguebox.scene.BeforeLoadScene;
+import kr.kkiro.roguebox.scene.LoadScene;
 import kr.kkiro.roguebox.util.term.ANSITerminal;
 import kr.kkiro.roguebox.util.term.BufferedTerminal;
 import kr.kkiro.roguebox.util.term.GUITerminal;
@@ -20,7 +20,7 @@ public class RogueBox {
     }
     Terminal term = new BufferedTerminal(guiTerm);
     TermApplication app = new TermApplication(term);
-    app.setScene(new BeforeLoadScene());
+    app.setScene(new LoadScene());
   }
 
 }
