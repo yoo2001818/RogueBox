@@ -43,6 +43,8 @@ public abstract class Entity {
     return true;
   }
   
+  public void interact(Entity e) {
+  }
   public abstract void render(TextGraphics g, int x, int y);
   public abstract void tick();
 }
