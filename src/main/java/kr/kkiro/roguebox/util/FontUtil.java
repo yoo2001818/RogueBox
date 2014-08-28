@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 public class FontUtil {
   
   private static List<String> fontlist;
