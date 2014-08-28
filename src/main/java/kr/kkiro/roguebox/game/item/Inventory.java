@@ -5,12 +5,16 @@ import java.util.List;
 
 public class Inventory {
   
-  protected List<InventoryItem> contents;
+  protected List<ItemType> contents;
+  protected ItemBank bank;
   
-  public Inventory() {
-    contents = new ArrayList<InventoryItem>();
+  public Inventory(ItemBank bank) {
+    this.bank = bank;
+    contents = new ArrayList<ItemType>();
   }
   
-  
+  public ItemBank getBank() {
+    return bank;
+  } 
 
 }
