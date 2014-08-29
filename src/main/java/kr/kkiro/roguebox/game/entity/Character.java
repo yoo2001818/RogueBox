@@ -1,17 +1,25 @@
 package kr.kkiro.roguebox.game.entity;
 
+import static kr.kkiro.roguebox.util.I18n._;
 import kr.kkiro.roguebox.curses.TextGraphics;
 import kr.kkiro.roguebox.game.TileEntry;
+import kr.kkiro.roguebox.game.item.Inventory;
 import kr.kkiro.roguebox.util.ANSIColor;
 import kr.kkiro.roguebox.util.DefinedIcon;
-import static kr.kkiro.roguebox.util.I18n._;
 
 public class Character extends InteractableEntity {
 
-  public Character(int x, int y) {
+  protected Inventory inventory;
+  
+  public Character(int x, int y, Inventory inventory) {
     super(x, y);
+    this.inventory = inventory;
   }
 
+  public Inventory getInventory() {
+    return inventory;
+  }
+  
   @Override
   public void render(TextGraphics g, int x, int y) {
     DefinedIcon.put('@', _("character"));
@@ -54,9 +62,6 @@ public class Character extends InteractableEntity {
     }
     if(entry.getTileId() == 0) return;
     int loss = 6;
-    //if(px == 0 || py == 0) loss = 10;
-    //if(entry.getTileId() == 3) loss = 3;
-    //if(entry.revealed) loss = 6;
     if(entry.getTileId() == 3) loss = 10;
     if(entry.getTileId() != 3 && entry.getRelative(px, py).getTileId() == 3) loss = 36;
     entry.revealed = true;
@@ -65,10 +70,6 @@ public class Character extends InteractableEntity {
     if(px != 1) revealMap(entry.getRelative(1, 0), ttl - loss, -1, py);
     if(py != -1) revealMap(entry.getRelative(0, -1), ttl - loss, px, 1);
     if(py != 1) revealMap(entry.getRelative(0, 1), ttl - loss, px, -1);
-    /*if(px != -1 && py != -1) revealMap(entry.getRelative(-1, -1), ttl - loss, 1, 1);
-    if(px != -1 && py != 1) revealMap(entry.getRelative(-1, 1), ttl - loss, 1, -1);
-    if(px != 1 && py != -1) revealMap(entry.getRelative(1, -1), ttl - loss, -1, 1);
-    if(px != 1 && py != 1) revealMap(entry.getRelative(1, 1), ttl - loss, -1, -1);*/
   }
 
 }

@@ -33,8 +33,7 @@ public class ItemStack {
   }
   
   public ItemType getItem() {
-    //TODO todo
-    return null;
+    return getBank().get(code);
   }
   
   
