@@ -19,6 +19,9 @@ public class CSimpleButton extends CInteractable {
       g.setBackColor(ANSIColor.RED);
       g.setTextColor(ANSIColor.WHITE);
     }
+    if(!isEnabled()) {
+      g.setTextColor(ANSIColor.DARK_GRAY);
+    }
     g.drawString(0,0, "<"+text+">");
   }
   

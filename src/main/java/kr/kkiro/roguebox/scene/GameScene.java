@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import kr.kkiro.roguebox.curses.CBackground;
 import kr.kkiro.roguebox.curses.CComponent;
+import kr.kkiro.roguebox.curses.CInteractable;
 import kr.kkiro.roguebox.curses.CLabel;
 import kr.kkiro.roguebox.curses.RootTextGraphics;
 import kr.kkiro.roguebox.curses.TextGraphics;
@@ -18,6 +19,11 @@ import kr.kkiro.roguebox.game.entity.Character;
 import kr.kkiro.roguebox.game.entity.Monster;
 import kr.kkiro.roguebox.game.entity.Stairs;
 import kr.kkiro.roguebox.game.entity.Treasure;
+import kr.kkiro.roguebox.game.item.BreadItem;
+import kr.kkiro.roguebox.game.item.Inventory;
+import kr.kkiro.roguebox.game.item.InventoryDisplayer;
+import kr.kkiro.roguebox.game.item.ItemBank;
+import kr.kkiro.roguebox.game.item.InventoryDisplayer.IExitListener;
 import kr.kkiro.roguebox.game.tile.BlankTile;
 import kr.kkiro.roguebox.game.tile.RoomTile;
 import kr.kkiro.roguebox.game.tile.TileBank;
@@ -29,13 +35,14 @@ import kr.kkiro.roguebox.util.MapGenerator;
 import kr.kkiro.roguebox.util.MapStructureGenerator;
 import kr.kkiro.roguebox.util.MapStructureGenerator.MapPosition;
 
-public class GameScene extends Scene {
+public class GameScene extends Scene implements IExitListener {
   
   private Map map;
   private Character character;
   private MapRenderer renderer;
   private CHelpDisplay helpdisp;
   private CLabel messdisp;
+  private InventoryDisplayer inventorydisp;
   private long cooltime;
 
   @Override
@@ -45,18 +52,17 @@ public class GameScene extends Scene {
     tileBank.set(1, new RoomTile());
     tileBank.set(2, new WallTile());
     tileBank.set(3, new TunnelTile());
+    
+    ItemBank itemBank = new ItemBank(256);
+    itemBank.set(0, new BreadItem());
+    
     MapStructureGenerator genstr = new MapStructureGenerator(16, 16, 20, 10, 4, System.currentTimeMillis());
     while(genstr.step());
     MapGenerator genmap = new MapGenerator(genstr, tileBank, 19, 9, 2, 1, 3, System.currentTimeMillis());
     genmap.generate();
-    /* TileMap tileMap = new TileMap(32, 16, tileBank, 2);
-    for(int y = 1; y < 15; ++y) {
-      for(int x = 1; x < 31; ++x) {
-        tileMap.get(x, y).setTileId(1);
-      }
-    } */
+    
     EntityMap entityMap = new EntityMap();
-    character = new Character(7, 7);
+    character = new Character(7, 7, new Inventory(itemBank));
     entityMap.add(character);
     character.setX(genstr.getStartRoom().x * 19 + 9);
     character.setY(genstr.getStartRoom().y * 9 + 4);
@@ -72,9 +78,20 @@ public class GameScene extends Scene {
         entityMap.add(treasure);
       }
     }
+    
     map = new Map(genmap.getTileMap(), entityMap);
     character.revealMap(10);
+    
+    //Have some free bread to debug.
+    character.getInventory().obtainItem(0, 3);
+    
     TextGraphics g = new RootTextGraphics(getApp().getTerminal());
+    
+    inventorydisp = new InventoryDisplayer(80-4, 24-4, character);
+    inventorydisp.setVisible(false);
+    inventorydisp.setEnabled(false);
+    inventorydisp.setExitListener(this);
+    
     renderer = new MapRenderer(map, 80, 24);
     renderer.x = 0;
     renderer.y = 0;
@@ -87,12 +104,16 @@ public class GameScene extends Scene {
     helpdisp = new CHelpDisplay();
     background.add(helpdisp);
     
-    messdisp = new CLabel("Message comes here");
+    messdisp = new CLabel("");
     messdisp.x = 1;
     messdisp.y = 22;
     background.add(messdisp);
     
+    background.placeCenter(inventorydisp, g);
+    background.add(inventorydisp);
+    
     renderer.setListener(this);
+    inventorydisp.setListener(this);
     background.render(g);
     startInput(background);
   }
@@ -119,6 +140,13 @@ public class GameScene extends Scene {
         case -KeyEvent.VK_RIGHT:
           ts = character.translate(1, 0);
         break;
+        case 'i':
+          renderer.setFocused(false);
+          renderer.setEnabled(false);
+          this.setFocus(inventorydisp.nextFocus());
+          inventorydisp.setEnabled(true);
+          inventorydisp.setVisible(true);
+        return true;
         default:
         return super.keyTyped(code, object);
       }
@@ -156,6 +184,14 @@ public class GameScene extends Scene {
     public int getHeight(TextGraphics g) {
       return 256;
     }
+  }
+
+  @Override
+  public void windowExit(CInteractable c) {
+    c.setFocused(false);
+    renderer.setEnabled(true);
+    renderer.setFocused(true);
+    this.setFocus(renderer);
   }
 
 }

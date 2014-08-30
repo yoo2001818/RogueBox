@@ -12,6 +12,7 @@ public class CContainer extends CInteractable implements Iterable<CComponent> {
   @Override
   public void render(TextGraphics g) {
     for(CComponent c : childrens) {
+      if(!c.visible) continue;
       c.render(g.subSet(c.x, c.y, c.getWidth(g), c.getHeight(g)));
     }
   }
@@ -66,6 +67,7 @@ public class CContainer extends CInteractable implements Iterable<CComponent> {
       if(c instanceof CInteractable) {
         CInteractable ci = (CInteractable)c;
         if(searchedEnt) {
+          if(!ci.isEnabled()) continue;
           ci.setFocused(true);
           if(ci instanceof CContainer) {
             CContainer cc = (CContainer)ci;
@@ -91,6 +93,7 @@ public class CContainer extends CInteractable implements Iterable<CComponent> {
       CComponent c = it.previous();
       if(c instanceof CInteractable) {
         CInteractable ci = (CInteractable)c;
+        if(!ci.isEnabled()) continue;
         ci.setFocused(true);
         if(ci instanceof CContainer) {
           CContainer cc = (CContainer)ci;
@@ -109,6 +112,7 @@ public class CContainer extends CInteractable implements Iterable<CComponent> {
       if(c instanceof CInteractable) {
         CInteractable ci = (CInteractable)c;
         if(searchedEnt) {
+          if(!ci.isEnabled()) continue;
           ci.setFocused(true);
           if(ci instanceof CContainer) {
             CContainer cc = (CContainer)ci;
@@ -132,6 +136,7 @@ public class CContainer extends CInteractable implements Iterable<CComponent> {
     for(CComponent c : childrens) {
       if(c instanceof CInteractable) {
         CInteractable ci = (CInteractable)c;
+        if(!ci.isEnabled()) continue;
         ci.setFocused(true);
         if(ci instanceof CContainer) {
           CContainer cc = (CContainer)ci;

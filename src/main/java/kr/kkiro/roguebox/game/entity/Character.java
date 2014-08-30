@@ -1,23 +1,41 @@
 package kr.kkiro.roguebox.game.entity;
 
 import static kr.kkiro.roguebox.util.I18n._;
+
+import java.util.EnumMap;
+
 import kr.kkiro.roguebox.curses.TextGraphics;
 import kr.kkiro.roguebox.game.TileEntry;
+import kr.kkiro.roguebox.game.item.EquipType;
 import kr.kkiro.roguebox.game.item.Inventory;
+import kr.kkiro.roguebox.game.item.ItemEntryEquippable;
+import kr.kkiro.roguebox.game.status.StatusManager;
 import kr.kkiro.roguebox.util.ANSIColor;
 import kr.kkiro.roguebox.util.DefinedIcon;
 
 public class Character extends InteractableEntity {
 
   protected Inventory inventory;
+  protected EnumMap<EquipType, ItemEntryEquippable> equipList;
+  protected StatusManager status;
   
   public Character(int x, int y, Inventory inventory) {
     super(x, y);
+    this.equipList = new EnumMap<EquipType, ItemEntryEquippable>(EquipType.class);
     this.inventory = inventory;
+    this.status = new StatusManager();
+  }
+  
+  public EnumMap<EquipType, ItemEntryEquippable> getEquipList() {
+    return equipList;
   }
 
   public Inventory getInventory() {
     return inventory;
+  }
+  
+  public StatusManager getStatus() {
+    return status;
   }
   
   @Override
@@ -49,6 +67,7 @@ public class Character extends InteractableEntity {
 
   @Override
   public void tick() {
+    status.tick();
   }
   
   public void revealMap(int range) {

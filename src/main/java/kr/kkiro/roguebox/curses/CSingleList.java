@@ -19,6 +19,13 @@ public List<ListItem> list = new ArrayList<ListItem>();
   
   @Override
   public void render(TextGraphics g) {
+    currentIndex = Math.max(0,Math.min(list.size()-1, currentIndex));
+    if(currentIndex - scrollIndex < 0) {
+      scrollIndex = currentIndex;
+    }
+    if(currentIndex - scrollIndex >= height) {
+      scrollIndex = currentIndex - height + 1;
+    }
     if(chosenEntry == null && list.size() >= 1) {
       chosenEntry = list.get(currentIndex);
     }
@@ -43,7 +50,7 @@ public List<ListItem> list = new ArrayList<ListItem>();
     //g.setBackColor(ANSIColor.RED);
     //g.fillRect(width-1, 0, 1, height);
     // calculate
-    int scrollHeight = Math.min(height, height*height/list.size());
+    int scrollHeight = Math.min(height, height*height/Math.max(1,list.size()));
     int scrollY = scrollIndex * (height - scrollHeight) / (list.size()-height);
     g.setBackColor(ANSIColor.BLUE);
     g.setTextColor(ANSIColor.RED);
@@ -68,7 +75,7 @@ public List<ListItem> list = new ArrayList<ListItem>();
       consumed = true;
     }
     currentIndex = Math.max(0,Math.min(list.size()-1, currentIndex));
-    chosenEntry = list.get(currentIndex);
+    if(list.size() >= 1) chosenEntry = list.get(currentIndex);
     if(currentIndex - scrollIndex < 0) {
       scrollIndex = currentIndex;
     }

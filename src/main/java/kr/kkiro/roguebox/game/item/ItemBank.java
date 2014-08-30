@@ -2,19 +2,19 @@ package kr.kkiro.roguebox.game.item;
 
 public class ItemBank {
   
-  private ItemType[] table;
+  private ItemEntry[] table;
   
   public ItemBank(int size) {
-    table = new ItemType[size];
+    table = new ItemEntry[size];
   }
   
-  public void set(int code, ItemType item) {
+  public void set(int code, ItemEntry item) {
     // TODO make exception for this
     if(table[code] != null) throw new RuntimeException("Code "+code+" already assigned");
     table[code] = item;
   }
   
-  public ItemType get(int code) {
+  public ItemEntry get(int code) {
     return table[code];
   }
   
@@ -22,7 +22,7 @@ public class ItemBank {
     table[code] = null;
   }
   
-  public void remove(ItemType item) {
+  public void remove(ItemEntry item) {
     int index = indexOf(item);
     if(index == -1) return;
     table[index] = null;
@@ -32,21 +32,21 @@ public class ItemBank {
     return table.length;
   }
   
-  public int indexOf(ItemType item) {
+  public int indexOf(ItemEntry item) {
     for(int i = 0; i < table.length; ++i) {
       if(table[i] == item) return i;
     }
     return -1;
   }
   
-  public int lastIndexOf(ItemType item) {
+  public int lastIndexOf(ItemEntry item) {
     for(int i = table.length-1; i >= 0; --i) {
       if(table[i] == item) return i;
     }
     return -1;
   }
   
-  public ItemType[] getArray() {
+  public ItemEntry[] getArray() {
     return table;
   }
   

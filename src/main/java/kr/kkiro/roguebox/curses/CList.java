@@ -18,6 +18,13 @@ public class CList extends CInteractable {
   
   @Override
   public void render(TextGraphics g) {
+    currentIndex = Math.max(0,Math.min(list.size()-1, currentIndex));
+    if(currentIndex - scrollIndex < 0) {
+      scrollIndex = currentIndex;
+    }
+    if(currentIndex - scrollIndex >= height) {
+      scrollIndex = currentIndex - height + 1;
+    }
     g.setBackColor(ANSIColor.BLUE);
     g.setTextColor(ANSIColor.GRAY);
     g.fillRect();

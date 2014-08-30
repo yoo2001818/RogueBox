@@ -4,6 +4,7 @@ package kr.kkiro.roguebox.curses;
 public abstract class CComponent {
   public int x = 0;
   public int y = 0;
+  public boolean visible = true;
   
   protected int width;
   protected int height;
@@ -49,6 +50,14 @@ public abstract class CComponent {
   
   public void setParent(CContainer parent) {
     this.parent = parent;
+  }
+  
+  public void setVisible(boolean visible) {
+    this.visible = visible;
+  }
+  
+  public boolean isVisible() {
+    return visible;
   }
   
 }

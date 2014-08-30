@@ -3,6 +3,7 @@ package kr.kkiro.roguebox.curses;
 public abstract class CInteractable extends CComponent {
   
   protected boolean focused = false;
+  protected boolean enabled = true;
   protected IActionListener listener;
   
   public void setListener(IActionListener listener) {
@@ -28,5 +29,13 @@ public abstract class CInteractable extends CComponent {
   
   public UsageEntry[] getUsage() {
     return new UsageEntry[0];
+  }
+  
+  public boolean isEnabled() {
+    return enabled;
+  }
+  
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
   }
 }

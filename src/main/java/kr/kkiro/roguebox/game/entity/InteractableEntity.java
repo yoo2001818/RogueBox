@@ -13,10 +13,15 @@ public abstract class InteractableEntity extends Entity {
     TileEntry tile = getEntityMap().getMap().getTileMap().get(this.x+x, this.y+y);
     if(!tile.getTile().isWalkable(tile, this)) return false;
     Entity others = getEntityMap().get(this.x+x, this.y+y);
-    if(others != null) return true;
+    if(others != null) {
+      interact(others);
+      others.interact(this);
+      return true;
+    }
     super.translate(x, y);
     tile.getTile().onInteract(tile, this);
     return true;
   }
+  
 
 }
