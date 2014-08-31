@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="roguebox.svg"
+   inkscape:export-filename="/home/yoo2001818/git/RogueBox/bin/roguebox_128.png"
+   inkscape:export-xdpi="45"
+   inkscape:export-ydpi="45">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="229.42123"
+     inkscape:cy="117.5115"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="601"
+     inkscape:window-height="392"
+     inkscape:window-x="1075"
+     inkscape:window-y="281"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)">
+    <rect
+       ry="16"
+       rx="16"
+       y="820.36218"
+       x="0"
+       height="232"
+       width="256"
+       id="rect3755"
+       style="fill:#363636;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    <rect
+       style="fill:#575757;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect2985"
+       width="256"
+       height="232"
+       x="0"
+       y="796.36218"
+       rx="16"
+       ry="16" />
+    <g
+       style="font-size:203.36030579000001239px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;letter-spacing:0px;word-spacing:0px;fill:#959595;fill-opacity:1;stroke:none;font-family:'나눔고딕';-inkscape-font-specification:Sans"
+       id="text3780">
+      <path
+         d="m 100.77692,872.57991 c -7e-5,-5.28727 -0.67794,-9.42226 -2.033603,-12.40498 -1.220233,-2.98251 -3.321621,-5.62619 -6.304169,-7.93105 -2.847108,-2.30464 -6.30423,-3.9993 -10.371376,-5.08401 -4.067258,-1.08447 -10.168061,-1.62676 -18.302427,-1.62688 l -11.388177,0 0,54.90728 11.794897,0 c 5.558472,7e-5 10.439114,-0.54223 14.641942,-1.62688 4.338297,-1.08452 8.202139,-2.77919 11.591538,-5.08401 3.389271,-2.30468 5.965165,-5.28729 7.727691,-8.94785 1.762383,-3.6604 2.643614,-7.72761 2.643684,-12.20162 m 24.35613,98.01967 c -0.27125,0.67786 -0.96979,1.01679 -1.78314,1.0168 l -10.57473,0 c -2.03369,-1e-5 -3.525,-0.94902 -4.47393,-2.84704 -6.64318,-12.06604 -11.52382,-20.81053 -14.64194,-26.23348 -2.982683,-5.55849 -6.236444,-11.59151 -9.761295,-18.09907 -2.169232,-3.93159 -4.406193,-8.13437 -6.71089,-12.60834 -3.253813,0.54235 -6.439788,0.94907 -9.557934,1.22016 -3.11823,0.13563 -6.236418,0.20341 -9.354574,0.20336 l -5.897449,0 0,55.51737 c -2.7e-5,1.89802 -0.94904,2.84703 -2.847045,2.84704 l -9.151213,0 c -1.898042,-1e-5 -2.847056,-0.94902 -2.847045,-2.84704 l 0,-129.74388 c -1.1e-5,-1.49118 -1.1e-5,-2.64356 0,-3.45712 0.135562,-0.81332 0.406709,-1.4234 0.813442,-1.83025 0.406708,-0.40659 1.016788,-0.60995 1.830242,-0.61008 0.813427,-0.13544 1.965801,-0.20323 3.457125,-0.20336 l 27.250281,0 c 7.72764,1.3e-4 14.370736,1.08472 19.92931,3.25377 5.694019,2.03372 10.371305,4.88077 14.031865,8.54113 3.79597,3.52503 6.57523,7.52444 8.33777,11.99826 1.89794,4.47403 2.84695,9.76139 2.84704,15.8621 -9e-5,4.06729 -0.47459,7.86335 -1.42352,11.38818 -0.81353,3.38941 -2.5082,6.77875 -5.08401,10.16801 -2.4404,3.38941 -5.28744,6.23645 -8.54113,8.54114 -3.118262,2.16923 -6.846531,3.8639 -11.184816,5.084 l 35.366596,53.7313"
+         style="fill:#959595;font-family:'나눔고딕코딩';-inkscape-font-specification:'나눔고딕코딩';fill-opacity:1"
+         id="path3785"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccccccsccccsccccccccsssscccccccccccccc" />
+      <path
+         d="m 228.69055,990.93561 0,4.88065 c -1e-4,1.49127 -0.13567,2.30471 -0.40672,2.44032 -0.13567,0.27111 -0.94911,0.40669 -2.44032,0.40672 l -94.35918,0 c -1.49131,-3e-5 -2.37254,-0.13561 -2.64369,-0.40672 -0.13557,-0.13561 -0.20336,-0.94905 -0.20336,-2.44032 l 0,-4.88065 c 0,-1.49134 0.0678,-2.37256 0.20336,-2.64368 0.27115,-0.1356 1.15238,-0.20339 2.64369,-0.20336 l 94.35918,0 c 1.49121,-3e-5 2.30465,0.0678 2.44032,0.20336 0.27105,0.27112 0.40662,1.15234 0.40672,2.64368"
+         style="fill:#959595;font-family:'나눔고딕코딩';-inkscape-font-specification:'나눔고딕코딩';fill-opacity:1"
+         id="path3787" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:203.36030579000001239px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;letter-spacing:0px;word-spacing:0px;fill:#efefef;fill-opacity:1;stroke:none;font-family:'나눔고딕';-inkscape-font-specification:Sans"
+       x="26.143688"
+       y="954.79065"
+       id="text3776"
+       sodipodi:linespacing="0%"><tspan
+         sodipodi:role="line"
+         id="tspan3778"
+         x="26.143688"
+         y="954.79065"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#efefef;fill-opacity:1;font-family:'나눔고딕코딩';-inkscape-font-specification:'나눔고딕코딩'">R_</tspan></text>
+  </g>
+</svg>
