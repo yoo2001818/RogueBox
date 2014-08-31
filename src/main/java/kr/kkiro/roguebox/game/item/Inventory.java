@@ -82,4 +82,23 @@ public class Inventory implements Iterable<ItemStack> {
     stack.setQuantity(stack.getQuantity() - quantity);
     if(stack.getQuantity() <= 0) contents.remove(stack);
   }
+  
+  public String equipItem(ItemStack stack) {
+    if(stack.isEquipable()) {
+      ItemEntryEquippable previous = getCharacter().getEquipList().get(((ItemEntryEquippable)stack.getItem()).getEquipType());
+      if(previous != null) {
+        unEquipItem(previous);
+      }
+      removeItem(stack.getCode(), 1);
+      getCharacter().getEquipList().put(((ItemEntryEquippable)stack.getItem()).getEquipType(), (ItemEntryEquippable)(stack.getItem()));
+      return stack.equip();
+    }
+    return null;
+  }
+  
+  public String unEquipItem(ItemEntryEquippable item) {
+    obtainItem(getBank().indexOf(item), 1);
+    getCharacter().getEquipList().remove(item.getEquipType());
+    return item.unEquip(getStack(item));    
+  }
 }

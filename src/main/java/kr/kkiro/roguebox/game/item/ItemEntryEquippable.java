@@ -6,6 +6,7 @@ public abstract class ItemEntryEquippable extends ItemEntry {
   
   public ItemEntryEquippable(String name, ItemType type, EquipType equipType) {
     super(name, type);
+    this.equipType = equipType;
   }
   
   public boolean isEquipable() {

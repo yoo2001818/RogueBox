@@ -7,6 +7,7 @@ public abstract class Entity {
   
   protected EntityMap entityMap;
   protected int x, y;
+  protected boolean removal = false;
   
   public Entity(int x, int y) {
     this.x = x;
@@ -47,4 +48,14 @@ public abstract class Entity {
   }
   public abstract void render(TextGraphics g, int x, int y);
   public abstract void tick();
+  
+  public abstract String getName();
+  
+  public boolean isRemoval() {
+    return removal;
+  }
+  
+  public void setRemoval(boolean removal) {
+    this.removal = removal;
+  }
 }

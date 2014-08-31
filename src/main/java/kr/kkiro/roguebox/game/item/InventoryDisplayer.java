@@ -32,9 +32,9 @@ public class InventoryDisplayer extends CWindow implements IActionListener {
     this.character = character;
     this.add(label);
     this.add(inventoryList);
-    this.add(closeButton);
     this.add(useButton);
     this.add(dumpButton);
+    this.add(closeButton);
     inventoryList.setListener(this);
     closeButton.setListener(this);
     useButton.setListener(this);
@@ -71,7 +71,7 @@ public class InventoryDisplayer extends CWindow implements IActionListener {
       }
       previousHash = (character.getInventory().getContents().hashCode() + character.getEquipList().hashCode());
     }
-    if(inventoryList.list.size() >= 1)
+    if(inventoryList.list.size() >= 1 && inventoryList.currentIndex < inventoryList.list.size())
       inventoryList.chosenEntry = inventoryList.list.get(inventoryList.currentIndex);
     label.x = 1;
     label.y = 0;
@@ -79,10 +79,8 @@ public class InventoryDisplayer extends CWindow implements IActionListener {
     inventoryList.y = 2;
     inventoryList.setWidth(this.getWidth(g)-4);
     inventoryList.setHeight(this.getHeight(g)-5-1);
-    closeButton.x = 1;
+    closeButton.x = this.getWidth(g)-3-closeButton.getWidth(g);
     closeButton.y = this.getHeight(g)-3;
-    dumpButton.x = this.getWidth(g)-3-dumpButton.getWidth(g);
-    dumpButton.y = this.getHeight(g)-3;
     ListItem selectedItem = inventoryList.chosenEntry;
     if(selectedItem == null) {
       useButton.text = _("use");
@@ -110,8 +108,10 @@ public class InventoryDisplayer extends CWindow implements IActionListener {
         }
       }
     }
-    useButton.x = dumpButton.x-1-useButton.getWidth(g);
-    useButton.y = dumpButton.y;
+    useButton.x = 1;
+    useButton.y = this.getHeight(g)-3;
+    dumpButton.x = useButton.x+1+useButton.getWidth(g);
+    dumpButton.y = useButton.y;
     super.render(g);
   }
   
@@ -199,6 +199,13 @@ public class InventoryDisplayer extends CWindow implements IActionListener {
           if(litem.getStack().isUseable() && litem.getStack().getQuantity() >= 1) {
             label.text = litem.getStack().use();
           }
+          if(litem.getStack().isEquipable() && litem.getStack().getQuantity() >= 1) {
+            label.text = character.getInventory().equipItem(litem.getStack());
+          }
+        }
+        if(item instanceof EquipListItem) {
+          EquipListItem litem = (EquipListItem) item;
+          character.getInventory().unEquipItem(litem.getEntry());
         }
       }
     }

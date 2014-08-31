@@ -3,8 +3,8 @@ package kr.kkiro.roguebox.scene;
 import static kr.kkiro.roguebox.util.I18n._;
 
 import java.awt.event.KeyEvent;
-import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import kr.kkiro.roguebox.curses.CBackground;
 import kr.kkiro.roguebox.curses.CComponent;
@@ -16,14 +16,16 @@ import kr.kkiro.roguebox.game.EntityMap;
 import kr.kkiro.roguebox.game.Map;
 import kr.kkiro.roguebox.game.MapRenderer;
 import kr.kkiro.roguebox.game.entity.Character;
-import kr.kkiro.roguebox.game.entity.Monster;
 import kr.kkiro.roguebox.game.entity.Stairs;
 import kr.kkiro.roguebox.game.entity.Treasure;
-import kr.kkiro.roguebox.game.item.BreadItem;
+import kr.kkiro.roguebox.game.entity.mob.Monster;
 import kr.kkiro.roguebox.game.item.Inventory;
 import kr.kkiro.roguebox.game.item.InventoryDisplayer;
-import kr.kkiro.roguebox.game.item.ItemBank;
 import kr.kkiro.roguebox.game.item.InventoryDisplayer.IExitListener;
+import kr.kkiro.roguebox.game.item.ItemBank;
+import kr.kkiro.roguebox.game.item.type.BreadItem;
+import kr.kkiro.roguebox.game.item.type.BronzeSwordItem;
+import kr.kkiro.roguebox.game.item.type.RedPotionItem;
 import kr.kkiro.roguebox.game.tile.BlankTile;
 import kr.kkiro.roguebox.game.tile.RoomTile;
 import kr.kkiro.roguebox.game.tile.TileBank;
@@ -42,6 +44,7 @@ public class GameScene extends Scene implements IExitListener {
   private MapRenderer renderer;
   private CHelpDisplay helpdisp;
   private CLabel messdisp;
+  private CLabel statdisp;
   private InventoryDisplayer inventorydisp;
   private long cooltime;
 
@@ -55,6 +58,8 @@ public class GameScene extends Scene implements IExitListener {
     
     ItemBank itemBank = new ItemBank(256);
     itemBank.set(0, new BreadItem());
+    itemBank.set(1, new RedPotionItem());
+    itemBank.set(2, new BronzeSwordItem());
     
     MapStructureGenerator genstr = new MapStructureGenerator(16, 16, 20, 10, 4, System.currentTimeMillis());
     while(genstr.step());
@@ -68,16 +73,8 @@ public class GameScene extends Scene implements IExitListener {
     character.setY(genstr.getStartRoom().y * 9 + 4);
     Stairs stairs = new Stairs(genstr.getEndRoom().x * 19 + 9, genstr.getEndRoom().y * 9 + 4);
     entityMap.add(stairs);
-    Random random = new Random();
-    for(MapPosition p : genstr.getRoomList()) {
-      if(p.equals(genstr.getStartRoom()) || p.equals(genstr.getEndRoom())) continue;
-      Monster monster = new Monster(p.x * 19 + 4, p.y * 9 + 2);
-      entityMap.add(monster);
-      if(random.nextInt(255) > 128) {
-        Treasure treasure = new Treasure(p.x * 19 + random.nextInt(15)+2, p.y * 9 + random.nextInt(5) + 2);
-        entityMap.add(treasure);
-      }
-    }
+    
+    genmap.generateEntity(entityMap);
     
     map = new Map(genmap.getTileMap(), entityMap);
     character.revealMap(10);
@@ -109,6 +106,18 @@ public class GameScene extends Scene implements IExitListener {
     messdisp.y = 22;
     background.add(messdisp);
     
+    statdisp = new CLabel("") {
+      @Override
+      public void render(TextGraphics g) {
+        this.text = _("statusInfo", character.health, character.maxHealth, character.strength, character.defense);
+        this.x = 80-1-this.getWidth(g);
+        super.render(g);
+      }
+    };
+    statdisp.x = 1;
+    statdisp.y = 0;
+    background.add(statdisp);
+    
     background.placeCenter(inventorydisp, g);
     background.add(inventorydisp);
     
@@ -121,7 +130,8 @@ public class GameScene extends Scene implements IExitListener {
   @Override
   public boolean keyTyped(int code, CComponent object) {
     if(object == renderer && cooltime < System.currentTimeMillis()) {
-      map.setMessage("");
+      map.setMessage("", 65535);
+      map.setMessagePriority(0);
       boolean ts;
       switch(code) {
         case -KeyEvent.VK_UP:

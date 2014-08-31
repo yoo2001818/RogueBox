@@ -38,4 +38,6 @@ public abstract class StatusEffect {
   public Character getCharacter() {
     return manager.character;
   }
+  
+  public abstract String getName();
 }

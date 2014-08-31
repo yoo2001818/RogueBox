@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import kr.kkiro.roguebox.game.entity.Character;
+import kr.kkiro.roguebox.util.I18n;
 
 public class StatusManager implements Iterable<StatusEffect> {
 
@@ -28,6 +29,7 @@ public class StatusManager implements Iterable<StatusEffect> {
   
   public void add(StatusEffect effect) {
     contents.add(effect);
+    effect.setManager(this);
     effect.register();
   }
   
@@ -39,6 +41,7 @@ public class StatusManager implements Iterable<StatusEffect> {
       effect.setTicksLeft(effect.getTicksLeft()-1);
       if(!effect.isAlive()) {
         effect.dispose();
+        getCharacter().getEntityMap().getMap().setMessage(I18n._("effectEnd", effect.getName()), 100);
         iterator.remove();
       }
     }

@@ -1,5 +1,7 @@
 package kr.kkiro.roguebox.game;
 
+import java.util.Iterator;
+
 import kr.kkiro.roguebox.game.entity.Entity;
 
 public class Map {
@@ -7,6 +9,7 @@ public class Map {
   protected TileMap tileMap;
   protected EntityMap entityMap;
   protected String message;
+  protected int messagePriority;
   
   public Map(TileMap tileMap, EntityMap entityMap) {
     this.tileMap = tileMap;
@@ -27,13 +30,26 @@ public class Map {
     return message;
   }
   
-  public void setMessage(String message) {
+  public void setMessage(String message, int priority) {
+    if(this.messagePriority > priority) return;
     this.message = message;
+    this.messagePriority = priority;
+  }
+  
+  public int getMessagePriority() {
+    return messagePriority;
+  }
+  
+  public void setMessagePriority(int messagePriority) {
+    this.messagePriority = messagePriority;
   }
   
   public void tick() {
-    for(Entity e : entityMap) {
+    Iterator<Entity> iterator = entityMap.iterator();
+    while(iterator.hasNext()) {
+      Entity e = iterator.next();
       e.tick();
+      if(e.isRemoval()) iterator.remove();
     }
   }
   

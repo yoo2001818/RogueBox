@@ -1,9 +1,18 @@
 package kr.kkiro.roguebox.game.entity;
 
+import java.util.Random;
+
 import kr.kkiro.roguebox.game.TileEntry;
+import kr.kkiro.roguebox.util.RandomProvider;
 
 public abstract class InteractableEntity extends Entity {
 
+  public int health = 4;
+  public int strength = 2;
+  public int defense = 2;
+  
+  protected Random random = RandomProvider.getRandom();
+  
   public InteractableEntity(int x, int y) {
     super(x, y);
   }
@@ -15,12 +24,25 @@ public abstract class InteractableEntity extends Entity {
     Entity others = getEntityMap().get(this.x+x, this.y+y);
     if(others != null) {
       interact(others);
-      others.interact(this);
+      if(!(others instanceof InteractableEntity)) {
+        others.interact(this);
+      }
       return true;
     }
     super.translate(x, y);
     tile.getTile().onInteract(tile, this);
     return true;
+  }
+  
+  public void damage(InteractableEntity killer) {
+    if(random.nextInt(this.defense + killer.strength) <= killer.strength) {
+      this.health -= 1;
+      if(this.health <= 0) kill(killer);
+    }
+  }
+  
+  public void kill(InteractableEntity killer) {
+    
   }
   
 

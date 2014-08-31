@@ -24,4 +24,8 @@ public class Treasure extends Entity {
   public void tick() {
   }
 
+  @Override
+  public String getName() {
+    return _("treasure");
+  }
 }

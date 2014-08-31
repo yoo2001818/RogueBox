@@ -22,5 +22,10 @@ public class Stairs extends Entity {
   @Override
   public void tick() {
   }
+  
+  @Override
+  public String getName() {
+    return _("stairs");
+  }
 
 }

@@ -2,7 +2,11 @@ package kr.kkiro.roguebox.util;
 
 import java.util.Random;
 
+import kr.kkiro.roguebox.game.EntityMap;
 import kr.kkiro.roguebox.game.TileMap;
+import kr.kkiro.roguebox.game.entity.Treasure;
+import kr.kkiro.roguebox.game.entity.mob.ChestMimic;
+import kr.kkiro.roguebox.game.entity.mob.Monster;
 import kr.kkiro.roguebox.game.tile.TileBank;
 import kr.kkiro.roguebox.util.MapStructureGenerator.MapPosition;
 
@@ -33,6 +37,24 @@ public class MapGenerator {
   
   public MapStructureGenerator getGenerator() {
     return generator;
+  }
+ 
+  public void generateEntity(EntityMap entityMap) {
+    int halfSizeX = sizeX / 2;
+    int halfSizeY = sizeY / 2;    
+    for(MapPosition p : generator.getRoomList()) {
+      if(p.equals(generator.getStartRoom()) || p.equals(generator.getEndRoom())) continue;
+      Monster monster = new Monster(p.x * sizeX + halfSizeX, p.y * sizeY + halfSizeY);
+      entityMap.add(monster);
+      if(random.nextInt(255) > 128) {
+        Treasure treasure = new Treasure(p.x * sizeX + random.nextInt(sizeX-4)+2, p.y * sizeY + random.nextInt(sizeY-4) + 2);
+        entityMap.add(treasure);
+      }
+      if(random.nextInt(255) > 128) {
+        ChestMimic mimic = new ChestMimic(p.x * sizeX + random.nextInt(sizeX-4)+2, p.y * sizeY + random.nextInt(sizeY-4) + 2);
+        entityMap.add(mimic);
+      }
+    } 
   }
   
   public void generate() {
