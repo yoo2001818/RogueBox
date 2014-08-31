@@ -4,9 +4,14 @@ import java.util.Random;
 
 import kr.kkiro.roguebox.game.EntityMap;
 import kr.kkiro.roguebox.game.TileMap;
+import kr.kkiro.roguebox.game.entity.Chest;
+import kr.kkiro.roguebox.game.entity.Door;
 import kr.kkiro.roguebox.game.entity.Treasure;
 import kr.kkiro.roguebox.game.entity.mob.ChestMimic;
 import kr.kkiro.roguebox.game.entity.mob.Monster;
+import kr.kkiro.roguebox.game.entity.mob.Rat;
+import kr.kkiro.roguebox.game.entity.mob.Spider;
+import kr.kkiro.roguebox.game.entity.mob.Zombie;
 import kr.kkiro.roguebox.game.tile.TileBank;
 import kr.kkiro.roguebox.util.MapStructureGenerator.MapPosition;
 
@@ -43,17 +48,43 @@ public class MapGenerator {
     int halfSizeX = sizeX / 2;
     int halfSizeY = sizeY / 2;    
     for(MapPosition p : generator.getRoomList()) {
+      int baseX = p.x * sizeX;
+      int baseY = p.y * sizeY;
       if(p.equals(generator.getStartRoom()) || p.equals(generator.getEndRoom())) continue;
-      Monster monster = new Monster(p.x * sizeX + halfSizeX, p.y * sizeY + halfSizeY);
+      Monster monster = null;
+      switch(RandomProvider.getRandom().nextInt(4)) {
+        case 0:
+          monster = new ChestMimic(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          break;
+        case 1:
+          monster = new Rat(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          break;
+        case 2:
+          monster = new Spider(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          break;
+        case 3:
+          monster = new Zombie(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          break;
+      }
       entityMap.add(monster);
       if(random.nextInt(255) > 128) {
-        Treasure treasure = new Treasure(p.x * sizeX + random.nextInt(sizeX-4)+2, p.y * sizeY + random.nextInt(sizeY-4) + 2);
+        Treasure treasure = new Treasure(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
         entityMap.add(treasure);
       }
       if(random.nextInt(255) > 128) {
-        ChestMimic mimic = new ChestMimic(p.x * sizeX + random.nextInt(sizeX-4)+2, p.y * sizeY + random.nextInt(sizeY-4) + 2);
-        entityMap.add(mimic);
+        if(random.nextInt(1024) > 512) {
+          ChestMimic mimic = new ChestMimic(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          entityMap.add(mimic);
+        } else {
+          Chest chest = new Chest(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
+          entityMap.add(chest);
+        }
       }
+      MapComponent component = generator.getMap()[p.y][p.x];
+      if(component.getTop()) entityMap.add(new Door(baseX + halfSizeX, baseY + 1));
+      if(component.getBottom()) entityMap.add(new Door(baseX + halfSizeX, baseY + sizeY - 2));
+      if(component.getLeft()) entityMap.add(new Door(baseX + 1, baseY + halfSizeY));
+      if(component.getRight()) entityMap.add(new Door(baseX + sizeX - 2, baseY + halfSizeY));
     } 
   }
   

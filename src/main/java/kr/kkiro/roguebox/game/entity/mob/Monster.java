@@ -5,7 +5,6 @@ import kr.kkiro.roguebox.curses.TextGraphics;
 import kr.kkiro.roguebox.game.entity.Character;
 import kr.kkiro.roguebox.game.entity.Entity;
 import kr.kkiro.roguebox.game.entity.InteractableEntity;
-import kr.kkiro.roguebox.game.item.ItemPicker;
 import kr.kkiro.roguebox.util.ANSIColor;
 import kr.kkiro.roguebox.util.DefinedIcon;
 
@@ -48,10 +47,9 @@ public class Monster extends InteractableEntity {
   @Override
   public void kill(InteractableEntity killer) {
     getEntityMap().getMap().setMessage(_("monsterKill", getName()), 16); 
-    if(killer instanceof Character) {
+    /*if(killer instanceof Character) {
       Character c = (Character) killer;
-      c.getInventory().obtainItem(ItemPicker.randomItem(new int[] {0, 0, 0, 0, 1, 2}), 1);
-    }
+    }*/
     this.setRemoval(true);
   }
   

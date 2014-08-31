@@ -2,27 +2,28 @@ package kr.kkiro.roguebox.game.status;
 
 import kr.kkiro.roguebox.util.I18n;
 
-public class HealEffect extends StatusEffect {
+public class ResistanceEffect extends StatusEffect {
 
-  public HealEffect(int ticksLeft) {
+  public ResistanceEffect(int ticksLeft) {
     super(ticksLeft);
   }
 
   @Override
   public void tick() {
-    getCharacter().heal(1);
   }
 
   @Override
   public void dispose() {
+    getCharacter().defense -= 5;
   }
 
   @Override
   public void register() {
+    getCharacter().defense += 5;
   }
   
   public String getName() {
-    return I18n._("healEffect");
+    return I18n._("resistanceEffect");
   };
 
 }

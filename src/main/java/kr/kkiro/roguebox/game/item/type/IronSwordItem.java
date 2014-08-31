@@ -6,21 +6,21 @@ import kr.kkiro.roguebox.game.item.ItemStack;
 import kr.kkiro.roguebox.game.item.ItemType;
 import kr.kkiro.roguebox.util.I18n;
 
-public class BronzeSwordItem extends ItemEntryEquippable {
+public class IronSwordItem extends ItemEntryEquippable {
 
-  public BronzeSwordItem() {
-    super(I18n._("bronzeSword"), ItemType.EQUIPABLE, EquipType.PRIMARY);
+  public IronSwordItem() {
+    super(I18n._("ironSword"), ItemType.EQUIPABLE, EquipType.PRIMARY);
   }
 
   @Override
   public String equip(ItemStack stack) {
-    stack.getInventory().getCharacter().strength += 2;
+    stack.getInventory().getCharacter().strength += 3;
     return I18n._("equipMsg", getName());
   }
 
   @Override
   public String unEquip(ItemStack stack) {
-    stack.getInventory().getCharacter().strength -= 2;
+    stack.getInventory().getCharacter().strength -= 3;
     return null;
   }
 

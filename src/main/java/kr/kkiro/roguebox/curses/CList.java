@@ -52,7 +52,7 @@ public class CList extends CInteractable {
     //g.fillRect(width-1, 0, 1, height);
     // calculate
     int scrollHeight = Math.min(height, height*height/list.size());
-    int scrollY = scrollIndex * (height - scrollHeight) / (list.size()-height);
+    int scrollY = scrollIndex * (height - scrollHeight) / Math.max(1, (list.size()-height));
     g.setTextColor(ANSIColor.RED);
     for(int i = scrollY; i < scrollY + scrollHeight; ++i) {
       g.drawChar(width-1, i, '▋');

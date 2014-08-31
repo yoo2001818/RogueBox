@@ -67,6 +67,9 @@ public class Inventory implements Iterable<ItemStack> {
     if(stack == null) {
       stack = new ItemStack(this, code, quantity);
       contents.add(stack);
+      for(int i = 0; i < quantity; ++i) {
+        stack.getItem().obtain(stack);
+      }
       return;
     }
     stack.setQuantity(quantity + stack.getQuantity());

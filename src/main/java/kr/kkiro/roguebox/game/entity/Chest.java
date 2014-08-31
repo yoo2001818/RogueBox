@@ -2,39 +2,39 @@ package kr.kkiro.roguebox.game.entity;
 
 import static kr.kkiro.roguebox.util.I18n._;
 import kr.kkiro.roguebox.curses.TextGraphics;
+import kr.kkiro.roguebox.game.item.ItemPicker;
 import kr.kkiro.roguebox.util.ANSIColor;
 import kr.kkiro.roguebox.util.DefinedIcon;
 
-public class Stairs extends Entity {
+public class Chest extends Entity {
 
-  public Stairs(int x, int y) {
+  public Chest(int x, int y) {
     super(x, y);
   }
-  
+
   @Override
   public void render(TextGraphics g, int x, int y) {
-    DefinedIcon.put('t', _("stairs"));
-    g.setTextColor(ANSIColor.CYAN);
+    DefinedIcon.put('C' ,_("chest"));
+    g.setTextColor(ANSIColor.LIGHT_YELLOW);
     g.setBackColor(ANSIColor.BLACK);
-    g.drawChar(x, y, 't');
+    g.drawChar(x, y, 'C');
   }
 
   @Override
   public void interact(Entity e) {
     if(e instanceof Character) {
-      entityMap.getMap().cleared = true;
-      return;
+      getEntityMap().getMap().setMessage(_("chestOpen"), 100);
+      ItemPicker.chestOpen(((Character)e).getInventory());
+      this.setRemoval(true);
     }
-    e.setRemoval(true);
   }
   
   @Override
   public void tick() {
   }
-  
+
   @Override
   public String getName() {
-    return _("stairs");
+    return _("chest");
   }
-
 }

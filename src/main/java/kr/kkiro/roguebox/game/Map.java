@@ -10,6 +10,7 @@ public class Map {
   protected EntityMap entityMap;
   protected String message;
   protected int messagePriority;
+  public boolean cleared = false;
   
   public Map(TileMap tileMap, EntityMap entityMap) {
     this.tileMap = tileMap;

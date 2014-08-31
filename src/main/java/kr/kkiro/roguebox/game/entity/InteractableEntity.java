@@ -35,7 +35,7 @@ public abstract class InteractableEntity extends Entity {
   }
   
   public void damage(InteractableEntity killer) {
-    if(random.nextInt(this.defense + killer.strength) <= killer.strength) {
+    if(random.nextInt(Math.max(0, this.defense) + Math.max(0, killer.strength)) <= Math.max(0, killer.strength)) {
       this.health -= 1;
       if(this.health <= 0) kill(killer);
     }

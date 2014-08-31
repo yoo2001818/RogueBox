@@ -1,16 +1,16 @@
 package kr.kkiro.roguebox.game.item.type;
 
 import kr.kkiro.roguebox.game.item.ItemEntryUseable;
-import static kr.kkiro.roguebox.util.I18n._;
 import kr.kkiro.roguebox.game.item.ItemStack;
 import kr.kkiro.roguebox.game.item.ItemType;
+import kr.kkiro.roguebox.game.item.PotionNamePool;
 import kr.kkiro.roguebox.game.status.HealEffect;
 import kr.kkiro.roguebox.util.I18n;
 
-public class RedPotionItem extends ItemEntryUseable {
+public class HealPotionItem extends ItemEntryUseable {
 
-  public RedPotionItem() {
-    super(_("redPotion"), ItemType.POTION);
+  public HealPotionItem() {
+    super(PotionNamePool.get(), ItemType.POTION);
   }
 
   @Override

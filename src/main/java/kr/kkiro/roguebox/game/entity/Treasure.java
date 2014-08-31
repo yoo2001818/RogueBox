@@ -21,6 +21,15 @@ public class Treasure extends Entity {
   }
 
   @Override
+  public void interact(Entity e) {
+    if(e instanceof Character) {
+      getEntityMap().getMap().setMessage(_("treasureFound"), 100);
+      ((Character)e).getInventory().obtainItem(3, 1);
+      this.setRemoval(true);
+    }
+  }
+  
+  @Override
   public void tick() {
   }
 

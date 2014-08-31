@@ -57,7 +57,7 @@ public class LoadScene extends Scene {
       }
     }
     
-    getApp().setScene(new ControllerDetectionScene());
+    getApp().setScene(new GameScene());
   }
 
   @Override
