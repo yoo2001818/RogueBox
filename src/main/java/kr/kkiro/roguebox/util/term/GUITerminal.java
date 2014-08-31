@@ -78,6 +78,7 @@ public class GUITerminal extends Terminal {
     frame.validate();
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
+    frame.setResizable(false);
     frame.addKeyListener(renderer);
     frame.addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent e)

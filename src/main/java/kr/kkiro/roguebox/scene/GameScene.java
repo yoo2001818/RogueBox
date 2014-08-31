@@ -205,7 +205,7 @@ public class GameScene extends Scene implements IExitListener {
           regenFloor();
           renderer.setMap(map);
           messdisp.text = _("enterFloor", floors);
-          map.setMessage("", 65535);
+          map.setMessage(_("enterFloor", floors), 65535);
         }
         if(!map.getMessage().isEmpty()) cooltime = System.currentTimeMillis()+300;
         renderer.cameraX = character.getX() - renderer.getWidth(null)/2;
