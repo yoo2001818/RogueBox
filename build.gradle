@@ -12,7 +12,7 @@ dependencies {
 
 archivesBaseName = 'RogueBox'
 sourceCompatibility = 1.7
-version = '0.0.1'
+version = '0.1.1'
 mainClassName = 'kr.kkiro.roguebox.RogueBox'
 
 jar {
