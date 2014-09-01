@@ -45,6 +45,7 @@ public class MapGenerator {
   }
  
   public void generateEntity(EntityMap entityMap) {
+    //random.setSeed(System.currentTimeMillis());
     int halfSizeX = sizeX / 2;
     int halfSizeY = sizeY / 2;    
     for(MapPosition p : generator.getRoomList()) {
@@ -72,7 +73,7 @@ public class MapGenerator {
         entityMap.add(treasure);
       }
       if(random.nextInt(255) > 128) {
-        if(random.nextInt(1024) > 512) {
+        if(random.nextInt(2048) > 1600) {
           ChestMimic mimic = new ChestMimic(baseX + random.nextInt(sizeX-4)+2, baseY + random.nextInt(sizeY-4) + 2);
           entityMap.add(mimic);
         } else {
