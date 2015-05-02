@@ -20,7 +20,7 @@ public class NewProfileScene extends Scene {
     int seed = seedStr.hashCode();
     getApp().getTerminal().writeString("The seed is "+Integer.toHexString(seed)+"\n");
     getApp().getTerminal().writeString("Generating Map... Please wait.\n");
-    MapStructureGenerator mapGen = new MapStructureGenerator(40, 20, 20, 5, 3, seed);
+    MapStructureGenerator mapGen = new MapStructureGenerator(16, 16, 20, 10, 4, seed);
     try {
       Thread.sleep(400);
     } catch (InterruptedException e) {
@@ -70,7 +70,7 @@ public class NewProfileScene extends Scene {
       }
       if(!result) break;
       try {
-        Thread.sleep(10);
+        Thread.sleep(100);
       } catch (InterruptedException e) {
       }
     }

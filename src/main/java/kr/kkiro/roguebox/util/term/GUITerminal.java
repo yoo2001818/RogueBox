@@ -40,7 +40,7 @@ public class GUITerminal extends Terminal {
   protected Thread renderThread;
   protected LinkedBlockingQueue<Integer> inputQueue = new LinkedBlockingQueue<Integer>();
   protected Object keyNotifier = new Object();
-  protected float lagRate = 0.8f;
+  protected float lagRate = 0.94f;
   
   public GUITerminal(String name) {
     this(name, 80, 24);
@@ -274,10 +274,10 @@ public class GUITerminal extends Terminal {
       synchronized (buffer) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setFont(font);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        /*g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
         RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-        RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        RenderingHints.VALUE_INTERPOLATION_BILINEAR);*/
         blinkTimer ++;
         Dimension fontSize = GUITerminal.this.fontSize;
         //Draw background.
